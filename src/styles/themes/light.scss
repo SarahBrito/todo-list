@@ -1,0 +1,49 @@
+
+
+@mixin theme-light-app {
+    background: url('/src/assets/images/bg-desktop-light.jpg'),index.$very-light-gray;
+    background-repeat: no-repeat;
+    background-position: top;
+    color: index.$very-dark-grayish-blue;
+
+    .to-do__input,
+    .to-do__tasks__container, 
+    .to-do__task,
+    .to-do__actions,
+    .to-do__filters{
+        background: index.$very-light-gray;
+    }
+
+    form input {
+        color: index.$very-dark-grayish-blue;;
+    }
+    
+    .to-do__tasks__container {
+        box-shadow: 0px 12px 23px -3px rgba(0,0,0,0.18);
+    }
+    
+    .to-do__task {
+        border-bottom: 1px solid index.$light-grayish-blue;
+    }
+   
+    .checkbox,
+    .checkbox-checked  {
+        border: 1px solid index.$light-grayish-blue;
+    }
+
+    .to-do__task>.checkbox:hover {
+        background-image: 
+        linear-gradient(index.$very-light-gray, index.$very-light-gray), 
+        index.$check-background;
+    }
+
+    .filter__all:hover,
+    .filter__active:hover,
+    .filter__completed:hover,
+    .btn-clear__completed:hover {
+        color: index.$very-dark-grayish-blue;
+}
+
+}
+
+ 

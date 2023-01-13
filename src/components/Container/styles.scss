@@ -1,0 +1,20 @@
+@use '../../styles/index.scss';
+@import '../../styles/themes/dark.scss';
+@import '../../styles/themes/light.scss';
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    @include theme-dark-app;
+}
+
+.dark-theme {
+    @include theme-dark-app;
+}
+
+.light-theme {
+    @include theme-light-app
+}

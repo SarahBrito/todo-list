@@ -1,0 +1,52 @@
+@use '../../styles/index.scss';
+
+
+.to-do__task {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 56px;
+    padding: 20px 16px;
+    position: relative;
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+}
+
+.to-do__task>.checkbox {
+    cursor: pointer;
+}
+
+.to-do__task>.checkbox:hover {
+    border: 1px solid transparent;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    transition: .3s ease-in;
+}
+
+//? ---------- style da tarefa completada ---------------
+
+.checkbox-checked {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 50px;
+    background: url('/src/assets/images/icon-check.svg'), index.$check-background;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.task-completed {
+    text-decoration: line-through ;
+    color: index.$dark-grayish-blue;
+}
+
+.to-do__task-remove {
+    position: absolute;
+    right: 16px;
+    cursor: pointer;
+    height: 18px;
+}

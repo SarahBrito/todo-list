@@ -1,0 +1,103 @@
+
+@use './styles/index.scss';
+@import 'styles/themes/dark.scss';
+@import 'styles/themes/light.scss';
+
+.App {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-items: center;    
+    @include theme-dark-app;
+}
+
+.dark-theme {
+    @include theme-dark-app;
+}
+
+.light-theme {
+    @include theme-light-app
+}
+
+.to-do__container {
+    width: 536px;
+    padding-top: 76px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.to-do__tasks__container {
+    border-radius: 5px;
+}
+
+
+.to-do__info-reorder-list {
+    margin-top: 55px;
+    color: index.$dark-grayish-blue;
+    font-size: 14px;
+    grid-area: info-reorder;
+}
+
+
+.attribution {
+    grid-area: footer;
+    position: absolute;
+    bottom: 24px;
+    color: index.$dark-grayish-blue;
+    text-align: center;
+
+    a {
+        color: index.$bright-blue;
+        text-decoration: none;
+        font-weight: 800;
+        transition: .3s ease-in;
+      }
+    
+      a:hover {
+        text-decoration: underline;
+      }
+}
+
+
+
+// ? ----------- Renponsivo ------------------
+
+@media(max-width: 550px){
+
+    .to-do__container {
+        width: 100%;
+        padding: 76px 12px 0px 12px;
+    }
+
+    .to-do__tasks {
+        width: 100%;
+    }
+
+    .to-do__tasks__container, 
+    .to-do__actions, 
+    .to-do__tasks, 
+    .to-do__task {
+        width: 100%;
+    }
+}
+
+@media (max-width: 450px){
+
+    .to-do__actions{
+        position: relative;
+    }
+
+    .to-do__filters {
+        position: absolute;
+        bottom: -70px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 55px;
+        border-radius: 5px;
+    }
+}

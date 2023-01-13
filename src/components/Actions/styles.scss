@@ -1,0 +1,25 @@
+@use '../../styles/index.scss';
+
+.to-do__actions {
+    font-size: 14px;
+    width: 536px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 16px;
+    border-radius: 5px;
+    color: index.$dark-grayish-blue;
+    box-shadow: 0px 12px 23px -3px rgba(0,0,0,0.18);
+}
+
+.to-do__filters {
+    display: flex;
+    gap: 12px;
+}
+
+.filter__all,
+.filter__active,
+.filter__completed,
+.btn-clear__completed {
+    cursor: pointer;
+    transition: .3s ease-in;
+}

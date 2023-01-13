@@ -1,0 +1,39 @@
+
+
+@mixin  theme-dark-app {
+    background: url('/src/assets/images/bg-desktop-dark.jpg'), index.$very-dark-blue;
+    background-repeat: no-repeat;
+    background-position: top;
+    color: index.$light-grayish-blue;
+    
+    .to-do__input,
+    .to-do__tasks__container,
+    .to-do__task,
+    .to-do__actions,
+    .to-do__filters  {
+        background: index.$very-dark-desaturated-blue;
+    }
+
+    .to-do__task {
+        border-bottom: 1px solid index.$very-dark-grayish-blue;
+    }
+
+    .checkbox,
+    .checkbox-checked {
+        border: 1px solid index.$very-dark-grayish-blue
+    }
+
+    .to-do__task>.checkbox:hover {
+        background-image: 
+            linear-gradient(index.$very-dark-desaturated-blue, index.$very-dark-desaturated-blue), 
+            index.$check-background;
+    }
+
+    .filter__all:hover,
+    .filter__active:hover,
+    .filter__completed:hover,
+    .btn-clear__completed:hover {
+        color: index.$light-grayish-blue-hover;
+}
+    
+}

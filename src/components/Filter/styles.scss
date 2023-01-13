@@ -1,0 +1,26 @@
+
+@use '../../styles/index.scss';
+
+to-do__filters {
+    display: flex;
+    gap: 12px;
+}
+
+.filter__all,
+.filter__active,
+.filter__completed,
+.btn-clear__completed {
+    cursor: pointer;
+    transition: .3s ease-in;
+}
+
+
+// ? ------------- filtro ativo --------------
+
+.remove-active {
+    color: index.$dark-grayish-blue;
+}
+
+.active {
+    color: index.$bright-blue;
+}

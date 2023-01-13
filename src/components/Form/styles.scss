@@ -1,0 +1,28 @@
+@use '../../styles/index.scss';
+
+
+
+.to-do__input {
+    width: 100%;
+    margin: 46px 0 22px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 16px;
+    border-radius: 5px;
+
+    input {
+        height: 56px;
+        border: none;
+        background: none;
+        outline: none;
+        color: index.$light-grayish-blue;
+        font-size: 16px;
+        caret-color: index.$bright-blue;
+
+        &::placeholder {
+            font-size: 16px;
+            color: index.$dark-grayish-blue;
+        }
+    }
+}
