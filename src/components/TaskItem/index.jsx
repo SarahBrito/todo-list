@@ -1,4 +1,4 @@
-
+import {RxCross1} from 'react-icons/rx'
 import { useTasks } from "../../context/Tasks";
 
 import './styles.scss'
@@ -38,7 +38,7 @@ const TaskItem = ({task, index}) => {
             <div 
                 className="to-do__task-remove" 
                 onClick={() => removeTask(task.id)}>
-                <img src="/src/assets/images/icon-cross.svg" alt="remove task" />
+               <RxCross1 className='remove-icon'/>
             </div>
         </div>
      );
