@@ -45,8 +45,15 @@
 }
 
 .to-do__task-remove {
+    display: flex;
+    align-items: center;
     position: absolute;
     right: 16px;
     cursor: pointer;
     height: 18px;
+
+    .remove-icon {
+        width: 20px;
+        height: 20px;
+    }
 }

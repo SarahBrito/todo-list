@@ -1,18 +1,30 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 
 export const TaskContext = createContext()
 
+const tasksFromLocalStorage = JSON.parse(localStorage.getItem('tasks')) || []
+const themeFromLocalStorage = JSON.parse( localStorage.getItem('theme')) || false
+
 const TaskProvaider = ({ children }) => {
-    const [tasks, setTasks] = useState([
-         
-    {id: "f8009cf0-3256-4241-b6f6-22c9310fcf8d", title: "Aprender Typescript", status: false},
-    {id: "c26eb04f-1d83-4a13-bf2e-63229ee7144e", title: "Aprender Inglês", status: false}
-    ])
+    const [tasks, setTasks] = useState(tasksFromLocalStorage)
 
     const [filterTasks, setFilterTasks] = useState([])
     const [filterIsActive, setFilterIsActive] = useState(false)
-    const [theme, setTheme] = useState(false)
+    const [theme, setTheme] = useState(themeFromLocalStorage)
+
+
+    useEffect(()=>{
+        localStorage.setItem("tasks", JSON.stringify(tasks))
+      },[tasks])
+      
+      useEffect(()=>{
+        localStorage.setItem('theme', JSON.stringify(theme))
+      },[theme])
+    
+      const handleClickTheme = () =>{
+        setTheme(!theme)
+      }
 
     return (
         <TaskContext.Provider 

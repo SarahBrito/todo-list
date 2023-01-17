@@ -11,12 +11,13 @@
         font-size: 40px;
         color: index.$very-light-gray;
     }
-
-    img {
-        width: 25px;
-        height: 25px;
-        cursor: pointer;
-    }
-
 }
+
+.to-do__header__icon .theme-icon{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    color: white;
+}
+
 
