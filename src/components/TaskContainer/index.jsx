@@ -7,7 +7,7 @@ import '../TaskContainer/styles.scss'
 const TaskContainer = () => {
 
   const {tasks, filterTasks, filterIsActive} = useTasks()
-
+ 
     return ( 
         <div className="to-do__tasks">
           {(filterIsActive ? filterTasks: tasks).map((task, index) => {

@@ -1,4 +1,4 @@
-import {RxCross1} from 'react-icons/rx'
+import { RxCross1 } from 'react-icons/rx'
 import { useTasks } from "../../context/Tasks";
 
 import './styles.scss'
@@ -6,30 +6,28 @@ import './styles.scss'
 
 const TaskItem = ({task, index}) => {
 
-    const {tasks, setTasks} = useTasks()
+    const {tasks, setTasks, filterIsActive, filterTasks, setFilterTasks,currentTasks,changeTasksStatus} = useTasks()
+
 
     // * lida com o click no checkbox - tarefa concluida/pendente
-    const handleClickCheckbox = (index) => {
-        const newTasks = tasks.map((task, i)=>{
-        if (i == index){
-            return {...task, status: !task.status}
-        }
-        return task
-        })
-        setTasks(newTasks)
+    const handleClickCheckbox = (taskId) => {
+        changeTasksStatus(taskId)
+    
     }
- 
+    
     // *remove uma tarefa
     const removeTask = (id) => {
+
         const newTasks = tasks.filter((item) => item.id !== id);
         setTasks(newTasks);
     }
 
+    
     return ( 
         <div className="to-do__task" key={index}>
             <div 
                 className={task.status ? 'checkbox-checked': 'checkbox'} 
-                onClick={() => handleClickCheckbox(index)}
+                onClick={() => handleClickCheckbox(task.id)}
                 >
             </div>
             <p className={task.status ? 'task-completed': null}>

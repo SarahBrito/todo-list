@@ -20,8 +20,7 @@ const Filter = () => {
      //* Filtros
     const handleFilterAllTasks = () => {
         setFilterIsActive(false)
-        setTasks(tasks)
-        setFilterTasks([])
+        setFilterTasks(tasks)
         setFilterAll(true)
         setFilterActive(false)
         setFilterCompleted(false)
@@ -36,6 +35,7 @@ const Filter = () => {
         setFilterActive(true)
         setFilterAll(false)
         setFilterCompleted(false)
+        
     }
 
     const handleFilterCompletedTasks = () => {

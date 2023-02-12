@@ -8,8 +8,7 @@ const themeFromLocalStorage = JSON.parse( localStorage.getItem('theme')) || fals
 
 const TaskProvaider = ({ children }) => {
     const [tasks, setTasks] = useState(tasksFromLocalStorage)
-
-    const [filterTasks, setFilterTasks] = useState([])
+    const [filterTasks, setFilterTasks] = useState(tasks)
     const [filterIsActive, setFilterIsActive] = useState(false)
     const [theme, setTheme] = useState(themeFromLocalStorage)
 
@@ -21,10 +20,23 @@ const TaskProvaider = ({ children }) => {
       useEffect(()=>{
         localStorage.setItem('theme', JSON.stringify(theme))
       },[theme])
-    
+      
+
       const handleClickTheme = () =>{
         setTheme(!theme)
       }
+
+    const changeTasksStatus = (taskId)=>{
+      const newTasks = tasks.map((task)=>{
+        if (task.id === taskId){
+
+            return {...task, status: !task.status}
+        }
+        return task
+        })
+   
+    setTasks(newTasks)
+    }
 
     return (
         <TaskContext.Provider 
@@ -32,7 +44,7 @@ const TaskProvaider = ({ children }) => {
             tasks, setTasks, 
             filterTasks, setFilterTasks, 
             filterIsActive, setFilterIsActive,
-            theme, setTheme
+            theme, setTheme,changeTasksStatus
         }}>
             {children}
         </TaskContext.Provider>
@@ -41,8 +53,8 @@ const TaskProvaider = ({ children }) => {
 
 export const useTasks = () => {
     const context = useContext(TaskContext)
-    const {tasks, setTasks,filterTasks, setFilterTasks,filterIsActive, setFilterIsActive, theme, setTheme} = context
-    return {tasks, setTasks,filterTasks, setFilterTasks,filterIsActive, setFilterIsActive, theme, setTheme}
+    const {tasks, setTasks,filterTasks, setFilterTasks,filterIsActive, setFilterIsActive, theme, setTheme,changeTasksStatus} = context
+    return {tasks, setTasks,filterTasks, setFilterTasks,filterIsActive, setFilterIsActive, theme, setTheme, changeTasksStatus}
 }
 
 export default TaskProvaider;
