@@ -11,27 +11,23 @@ const Filter = () => {
     const [filterCompleted, setFilterCompleted] = useState(false)
 
 
-    const {tasks, setTasks, setFilterTasks, setFilterIsActive} = useTasks()
-
+    const { handleShowAllTasks, handleShowActiveTasks, handleShowCompletedTasks} = useTasks()
+    
     const currentActiveClass = classNames('remove-active', {'active': filterActive})
     const currentAllClass = classNames('remove-active', {'active': filterAll})
     const currentCompletedClass = classNames('remove-active', {'active': filterCompleted})
 
      //* Filtros
     const handleFilterAllTasks = () => {
-        setFilterIsActive(false)
-        setFilterTasks(tasks)
+        handleShowAllTasks()
         setFilterAll(true)
         setFilterActive(false)
         setFilterCompleted(false)
     }
 
     const handleFilterActiveTasks = () => {
-        setFilterIsActive(true)
-        const activeTasks = tasks.filter((active)=>{
-        return active.status === false
-        })
-        setFilterTasks(activeTasks)
+        handleShowActiveTasks()
+        
         setFilterActive(true)
         setFilterAll(false)
         setFilterCompleted(false)
@@ -39,12 +35,8 @@ const Filter = () => {
     }
 
     const handleFilterCompletedTasks = () => {
-        setFilterIsActive(true)
-        const completedTasks = tasks.filter((completed)=>{
-        return completed.status === true
-        })
-
-        setFilterTasks(completedTasks)
+        handleShowCompletedTasks()
+        
         setFilterAll(false)
         setFilterActive(false)
         setFilterCompleted(true)

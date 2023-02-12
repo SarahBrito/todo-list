@@ -6,8 +6,8 @@ import './styles.scss'
 
 const TaskItem = ({task, index}) => {
 
-    const {tasks, setTasks, filterIsActive, filterTasks, setFilterTasks,currentTasks,changeTasksStatus} = useTasks()
-
+    const {getTasks, setTasks, changeTasksStatus} = useTasks()
+    const tasks = getTasks()
 
     // * lida com o click no checkbox - tarefa concluida/pendente
     const handleClickCheckbox = (taskId) => {

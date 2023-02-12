@@ -6,11 +6,12 @@ import '../TaskContainer/styles.scss'
 
 const TaskContainer = () => {
 
-  const {tasks, filterTasks, filterIsActive} = useTasks()
- 
+  const {getTasks} = useTasks()
+  const tasks = getTasks()
+  
     return ( 
         <div className="to-do__tasks">
-          {(filterIsActive ? filterTasks: tasks).map((task, index) => {
+          {tasks.map((task, index) => {
             return (
                 <TaskItem task={task} index={index} key={index}/>
             )

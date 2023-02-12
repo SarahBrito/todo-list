@@ -7,11 +7,12 @@ import '../Form/styles.scss'
 const Form = () => {
   const [task, setTask] = useState('')
 
-  const {tasks, setTasks} = useTasks()
+  const {getTasks, setTasks} = useTasks()
+  const tasks = getTasks()
 
   // * adiciona uma nova tarefa
-  const handleAddTask = (e) => {
-    e.preventDefault()
+  const handleAddTask = (event) => {
+    event.preventDefault()
     handleTasks(task)
   }
 

@@ -4,8 +4,9 @@ import './styles.scss'
 
 const Actions = () => {
 
-  const {tasks, setTasks} = useTasks()
-
+  const {getTasks, setTasks} = useTasks()
+  const tasks = getTasks()
+  
   // *calcula a quantidade de itens restantes
   const showItemsLeft = () =>{
     const activeTasks = tasks.filter((active)=>{
