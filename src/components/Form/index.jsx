@@ -1,23 +1,32 @@
 import { useState } from "react";
 import { useTasks } from "../../context/Tasks";
-
+import {v4 as uuidv4} from 'uuid'
 
 import '../Form/styles.scss'
 
 const Form = () => {
   const [task, setTask] = useState('')
 
-  const { createNewTask } = useTasks()
+  const {getTasks, setTasks} = useTasks()
+  const tasks = getTasks()
 
+  // * adiciona uma nova tarefa
   const handleAddTask = (event) => {
     event.preventDefault()
-    handleTaskCreation(task)
+    handleTasks(task)
   }
 
-   const handleTaskCreation = () => {
-    createNewTask(task)
-   }
-  
+   // *cria uma nova tarefa
+   const handleTasks = () =>{
+
+    const newTask = [...tasks, {
+        id: uuidv4(),
+        title: task,
+        status: false
+      }]
+      setTasks(newTask)
+    }
+
     return ( 
         <div className="to-do__input">
           <div className="checkbox"></div>

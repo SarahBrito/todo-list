@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-
+import {v4 as uuidv4} from 'uuid'
 
 export const TaskContext = createContext()
 
@@ -24,6 +24,16 @@ const TaskProvaider = ({ children }) => {
     const handleClickTheme = () =>{
       setTheme(!theme)
     }
+
+    const createNewTask = (task) =>{
+
+      const newTask = [...tasks, {
+          id: uuidv4(),
+          title: task,
+          status: false
+        }]
+        setTasks(newTask)
+      }
 
     const changeTasksStatus = (taskId)=>{
       const newTasks = tasks.map((task)=>{
@@ -54,29 +64,73 @@ const TaskProvaider = ({ children }) => {
     const handleShowCompletedTasks = () =>{
       setFilterIsActive('completed')
     }
+
+    const removeTask = (taskId) => {
+      const newTasks = tasks.filter((task) => task.id !== taskId);
+      setTasks(newTasks);
+  }
+
+  const getItemsLeft = () =>{
+    const activeTasks = tasks.filter((task)=>{
+      return task.status === false
+  })
+  return activeTasks.length
+  }
+
+  const clearTasksCompleted = () => {
+    const resetTasksCompleted = tasks.map((task)=>{
+      return {...task, status: false}
+    })
+    setTasks(resetTasksCompleted)
+  }
+
     return (
-        <TaskContext.Provider 
-        value={{
-            getTasks, 
-            setTasks, 
-            handleShowActiveTasks,
-            handleShowAllTasks,
-            handleShowCompletedTasks,
-            theme, 
-            setTheme,
-            changeTasksStatus
-        }}>
-            {children}
-        </TaskContext.Provider>
+      <TaskContext.Provider 
+      value={{
+          getTasks, 
+          handleShowActiveTasks,
+          handleShowAllTasks,
+          handleShowCompletedTasks,
+          theme, 
+          setTheme,
+          changeTasksStatus,
+          removeTask,
+          createNewTask,
+          getItemsLeft,
+          clearTasksCompleted
+      }}>
+          {children}
+      </TaskContext.Provider>
     )
 }
 
 export const useTasks = () => {
     const context = useContext(TaskContext)
-    const {getTasks, setTasks, setFilterIsActive, theme, setTheme,changeTasksStatus,handleShowActiveTasks,
-      handleShowAllTasks, handleShowCompletedTasks} = context
-    return {getTasks, setTasks, setFilterIsActive, theme, setTheme, changeTasksStatus, handleShowActiveTasks,
-      handleShowAllTasks, handleShowCompletedTasks}
+    const {
+      getTasks, 
+      theme, 
+      setTheme,
+      changeTasksStatus,
+      handleShowActiveTasks,
+      handleShowAllTasks, 
+      handleShowCompletedTasks,
+      removeTask,
+      createNewTask,
+      getItemsLeft,
+      clearTasksCompleted} = context
+
+    return {
+      getTasks, 
+      theme, 
+      setTheme, 
+      changeTasksStatus, 
+      handleShowActiveTasks,
+      handleShowAllTasks, 
+      handleShowCompletedTasks,
+      removeTask,
+      createNewTask,
+      getItemsLeft,
+      clearTasksCompleted}
 }
 
 export default TaskProvaider;
