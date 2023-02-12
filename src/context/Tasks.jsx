@@ -8,9 +8,7 @@ const themeFromLocalStorage = JSON.parse( localStorage.getItem('theme')) || fals
 
 const TaskProvaider = ({ children }) => {
     const [tasks, setTasks] = useState(tasksFromLocalStorage)
-
-    const [filterTasks, setFilterTasks] = useState([])
-    const [filterIsActive, setFilterIsActive] = useState(false)
+    const [filterIsActive, setFilterIsActive] = useState('all')
     const [theme, setTheme] = useState(themeFromLocalStorage)
 
 
@@ -21,18 +19,52 @@ const TaskProvaider = ({ children }) => {
       useEffect(()=>{
         localStorage.setItem('theme', JSON.stringify(theme))
       },[theme])
-    
-      const handleClickTheme = () =>{
-        setTheme(!theme)
-      }
+      
 
+    const handleClickTheme = () =>{
+      setTheme(!theme)
+    }
+
+    const changeTasksStatus = (taskId)=>{
+      const newTasks = tasks.map((task)=>{
+        if (task.id === taskId){
+
+            return {...task, status: !task.status}
+        }
+        return task
+        })
+        
+        setTasks(newTasks)
+    }
+
+    const getTasks = () =>{
+     if (filterIsActive === 'all') return tasks
+     if (filterIsActive === 'uncompleted') return tasks.filter(task => !task.status)
+     if (filterIsActive === 'completed') return tasks.filter(task => task.status)
+    }
+
+    const handleShowActiveTasks = () =>{
+      setFilterIsActive('uncompleted')
+    }
+
+    const handleShowAllTasks = () =>{
+      setFilterIsActive('all')
+    }
+
+    const handleShowCompletedTasks = () =>{
+      setFilterIsActive('completed')
+    }
     return (
         <TaskContext.Provider 
         value={{
-            tasks, setTasks, 
-            filterTasks, setFilterTasks, 
-            filterIsActive, setFilterIsActive,
-            theme, setTheme
+            getTasks, 
+            setTasks, 
+            handleShowActiveTasks,
+            handleShowAllTasks,
+            handleShowCompletedTasks,
+            theme, 
+            setTheme,
+            changeTasksStatus
         }}>
             {children}
         </TaskContext.Provider>
@@ -41,8 +73,10 @@ const TaskProvaider = ({ children }) => {
 
 export const useTasks = () => {
     const context = useContext(TaskContext)
-    const {tasks, setTasks,filterTasks, setFilterTasks,filterIsActive, setFilterIsActive, theme, setTheme} = context
-    return {tasks, setTasks,filterTasks, setFilterTasks,filterIsActive, setFilterIsActive, theme, setTheme}
+    const {getTasks, setTasks, setFilterIsActive, theme, setTheme,changeTasksStatus,handleShowActiveTasks,
+      handleShowAllTasks, handleShowCompletedTasks} = context
+    return {getTasks, setTasks, setFilterIsActive, theme, setTheme, changeTasksStatus, handleShowActiveTasks,
+      handleShowAllTasks, handleShowCompletedTasks}
 }
 
 export default TaskProvaider;
