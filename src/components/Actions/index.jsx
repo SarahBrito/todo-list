@@ -4,32 +4,25 @@ import './styles.scss'
 
 const Actions = () => {
 
-  const {getTasks, setTasks} = useTasks()
-  const tasks = getTasks()
-  
+  const {getItemsLeft, clearTasksCompleted} = useTasks()
+
   // *calcula a quantidade de itens restantes
   const showItemsLeft = () =>{
-    const activeTasks = tasks.filter((active)=>{
-      return active.status === false
-  })
-  return activeTasks.length
+    return getItemsLeft()
   }
 
   const itemsLeft = showItemsLeft() //? Quantidade de tarefas pendentes
 
    // *Limpa as tarefas completadas
-   const clearTasksCompleted = () => {
-    const resetTasksCompleted = tasks.map((task)=>{
-      return {...task, status: false}
-    })
-    setTasks(resetTasksCompleted)
+   const handleCheckedTasks = () => {
+    return clearTasksCompleted()
   }
 
     return ( 
         <div className="to-do__actions">
           <span className="to-do__info">{itemsLeft} items left</span>
           <Filter />
-          <span className="btn-clear__completed" onClick={clearTasksCompleted}>Clear Completed</span>
+          <span className="btn-clear__completed" onClick={handleCheckedTasks}>Clear Completed</span>
         </div>
      );
 }
