@@ -3,26 +3,20 @@ import { useTasks } from "../../context/Tasks";
 
 import './styles.scss'
 
-
 const TaskItem = ({task, index}) => {
 
-    const {getTasks, setTasks, changeTasksStatus} = useTasks()
-    const tasks = getTasks()
-
+    const {removeTask, changeTasksStatus} = useTasks()
+    
     // * lida com o click no checkbox - tarefa concluida/pendente
     const handleClickCheckbox = (taskId) => {
         changeTasksStatus(taskId)
-    
     }
     
     // *remove uma tarefa
-    const removeTask = (id) => {
-
-        const newTasks = tasks.filter((item) => item.id !== id);
-        setTasks(newTasks);
+    const handleTaskDeleted = (id) => {
+        return removeTask(id)
     }
 
-    
     return ( 
         <div className="to-do__task" key={index}>
             <div 
@@ -35,7 +29,7 @@ const TaskItem = ({task, index}) => {
             </p>
             <div 
                 className="to-do__task-remove" 
-                onClick={() => removeTask(task.id)}>
+                onClick={() => handleTaskDeleted(task.id)}>
                <RxCross1 className='remove-icon'/>
             </div>
         </div>

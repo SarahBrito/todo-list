@@ -1,30 +1,22 @@
 import { useState } from "react";
 import { useTasks } from "../../context/Tasks";
-import {v4 as uuidv4} from 'uuid'
 
 import '../Form/styles.scss'
 
 const Form = () => {
   const [task, setTask] = useState('')
 
-  const {getTasks, setTasks} = useTasks()
-  const tasks = getTasks()
-
+  const {createNewTask} = useTasks()
+  
   // * adiciona uma nova tarefa
   const handleAddTask = (event) => {
     event.preventDefault()
-    handleTasks(task)
+    handleTaskCreation(task)
   }
 
    // *cria uma nova tarefa
-   const handleTasks = () =>{
-
-    const newTask = [...tasks, {
-        id: uuidv4(),
-        title: task,
-        status: false
-      }]
-      setTasks(newTask)
+   const handleTaskCreation = () =>{
+    createNewTask(task)
     }
 
     return ( 
