@@ -6,12 +6,13 @@ import Actions from   '../Actions';
 import classNames from "classnames";
 
 import './styles.scss'
-import { useTasks } from "../../context/Tasks";
+
+import { useTheme } from "../../context/Theme";
 
 
 const Container = () => {
 
-    const {theme} = useTasks()
+    const {theme} = useTheme()
     const currentTheme = classNames('dark-theme', { 'light-theme': theme })
 
     return (
