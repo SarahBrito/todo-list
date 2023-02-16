@@ -1,17 +1,17 @@
 import { BsSun } from 'react-icons/bs'
 import { FaMoon } from 'react-icons/fa'
 
-import { useTasks } from "../../context/Tasks";
+import { useTheme } from '../../context/Theme';
 
 import './styles.scss'
 
 
 const Header = () => {
 
-    const {theme, setTheme} = useTasks()
+    const {theme, changeCurrentTheme} = useTheme()
   
     const handleClickTheme = () =>{
-        setTheme(!theme)
+        return changeCurrentTheme()
     }
 
     return ( 
